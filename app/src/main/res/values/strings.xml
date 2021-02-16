@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">OriginWidget</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="activity_widget_config_icon_app_text">应用图标</string>
+    <string name="activity_widget_config_icon_file_text">从文件选择</string>
+    <string name="activity_widget_config_background_app_text">从应用图标生成</string>
+    <string name="activity_widget_config_background_file_text">从文件选择</string>
+    <string name="activity_widget_config_background_horizontal_margin">widget水平间距</string>
+    <string name="activity_widget_config_background_vertical_margin">widget垂直间距</string>
+    <string name="activity_widget_config_icon_margin">图标间距</string>
+    <string name="activity_widget_config_radius">圆角</string>
+    <string name="activity_widget_config_save_button">保存</string>
+</resources>

@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.OriginWidget" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="dialogCornerRadius">8dp</item>
+
+    </style>
+
+    <style name="ThemeOverlay.OriginWidget.AppWidgetContainer" parent="">
+        <item name="appWidgetBackgroundColor">@android:color/transparent</item>
+        <item name="appWidgetTextColor">@color/textColorPrimary</item>
+    </style>
+</resources>
