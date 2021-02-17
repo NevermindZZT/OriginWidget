@@ -214,6 +214,7 @@
                                 android:id="@+id/background_image"
                                 android:layout_width="0dp"
                                 android:layout_height="128dp"
+                                android:src="@{model.background}"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -279,6 +280,19 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="@{String.valueOf(model.marginHorizontal)}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="10" />
+
                         <SeekBar
                             android:id="@+id/background_horizontal_bar"
                             android:layout_width="0dp"
@@ -304,6 +318,18 @@
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/background_horizontal_bar" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="@{String.valueOf(model.marginVertical)}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/background_horizontal_bar"
+                            tools:text="10" />
 
                         <SeekBar
                             android:id="@+id/background_vertical_bar"
@@ -331,6 +357,18 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/background_vertical_bar" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="@{String.valueOf(model.marginIcon)}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/background_vertical_bar"
+                            tools:text="10" />
+
                         <SeekBar
                             android:id="@+id/icon_bar"
                             android:layout_width="0dp"
@@ -356,6 +394,18 @@
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/icon_bar" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="@{String.valueOf(model.radius)}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/icon_bar"
+                            tools:text="10" />
 
                         <SeekBar
                             android:id="@+id/radius_bar"

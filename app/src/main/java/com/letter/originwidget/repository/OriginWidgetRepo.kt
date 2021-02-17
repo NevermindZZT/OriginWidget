@@ -1,9 +1,11 @@
 package com.letter.originwidget.repository
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import androidx.core.content.edit
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ImageUtils
 import com.letter.originwidget.database.AppDatabase
@@ -32,8 +34,10 @@ class OriginWidgetRepo {
     fun getBackground(context: Context, widgetEntity: WidgetEntity): Bitmap? =
         when (widgetEntity.backgroundType) {
             WidgetEntity.SOURCE_TYPE_ICON -> {
-                ConvertUtils.drawable2Bitmap(
-                        AppUtils.getAppInfo(context, widgetEntity.packageName ?: "", PackageManager.GET_ACTIVITIES).icon)
+                val appInfo = AppUtils.getAppInfo(context, widgetEntity.packageName ?: "", PackageManager.GET_ACTIVITIES)
+                if (appInfo != null)
+                    ConvertUtils.drawable2Bitmap(appInfo.icon)
+                else null
             }
             else -> null
         }
@@ -76,8 +80,11 @@ class OriginWidgetRepo {
     fun getIcon(context: Context, widgetEntity: WidgetEntity): Bitmap? =
         when (widgetEntity.iconType) {
             WidgetEntity.SOURCE_TYPE_ICON -> {
-                ConvertUtils.drawable2Bitmap(
-                    AppUtils.getAppInfo(context, widgetEntity.packageName ?: "", PackageManager.GET_ACTIVITIES).icon)
+                val appInfo = AppUtils.getAppInfo(context, widgetEntity.packageName ?: "", PackageManager.GET_ACTIVITIES)
+                if (appInfo != null)
+                    ConvertUtils.drawable2Bitmap(appInfo.icon)
+                else
+                    null
             }
             else -> null
         }
@@ -98,5 +105,23 @@ class OriginWidgetRepo {
         withContext(Dispatchers.Main) {
             action?.invoke()
         }
+    }
+
+    fun getDefaultParam(context: Context, key: String) =
+        context.getSharedPreferences(WIDGET_PARAM, Context.MODE_PRIVATE)
+            .getInt(key, 0)
+
+    fun setDefaultParam(context: Context, action: (SharedPreferences.Editor.() -> Unit)? = null) =
+        context.getSharedPreferences(WIDGET_PARAM, Context.MODE_PRIVATE)
+            .edit {
+                action?.invoke(this)
+            }
+
+    companion object {
+        private const val WIDGET_PARAM = "widget_param"
+        const val KEY_MARGIN_HORIZONTAL = "margin_horizontal"
+        const val KEY_MARGIN_VERTICAL = "margin_vertical"
+        const val KEY_MARGIN_ICON = "margin_icon"
+        const val KEY_RADIUS = "radius"
     }
 }

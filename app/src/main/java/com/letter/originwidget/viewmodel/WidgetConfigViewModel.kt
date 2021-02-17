@@ -49,6 +49,13 @@ class WidgetConfigViewModel(application: Application): AndroidViewModel(applicat
         OriginWidgetRepo()
     }
 
+    init {
+        marginHorizontal.value = originWidgetRepo.getDefaultParam(application, OriginWidgetRepo.KEY_MARGIN_HORIZONTAL)
+        marginVertical.value = originWidgetRepo.getDefaultParam(application, OriginWidgetRepo.KEY_MARGIN_VERTICAL)
+        marginIcon.value = originWidgetRepo.getDefaultParam(application, OriginWidgetRepo.KEY_MARGIN_ICON)
+        radius.value = originWidgetRepo.getDefaultParam(application, OriginWidgetRepo.KEY_RADIUS)
+    }
+
     fun getPreviewBackground(): Bitmap? =
         if (widgetEntity.value != null) {
             originWidgetRepo.getPreviewBackground(getApplication(), widgetEntity.value!!)
@@ -77,6 +84,12 @@ class WidgetConfigViewModel(application: Application): AndroidViewModel(applicat
         widgetEntity.value?.marginIcon = marginIcon.value ?: 0
         widgetEntity.value?.radius = radius.value ?: 0
         viewModelScope.launch {
+            originWidgetRepo.setDefaultParam(getApplication()) {
+                putInt(OriginWidgetRepo.KEY_MARGIN_HORIZONTAL, marginHorizontal.value ?: 0)
+                putInt(OriginWidgetRepo.KEY_MARGIN_VERTICAL, marginVertical.value ?: 0)
+                putInt(OriginWidgetRepo.KEY_MARGIN_ICON, marginIcon.value ?: 0)
+                putInt(OriginWidgetRepo.KEY_RADIUS, radius.value ?: 0)
+            }
             originWidgetRepo.saveWidget(getApplication(), widgetEntity.value!!, action)
         }
     }

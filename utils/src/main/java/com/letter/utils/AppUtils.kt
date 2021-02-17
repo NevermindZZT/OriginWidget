@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.graphics.drawable.Drawable
 import android.os.Build
+import java.lang.Exception
 
 /**
  * App Utils
@@ -45,18 +46,22 @@ object AppUtils {
         return appInfoList
     }
 
-    fun getAppInfo(context: Context, packageName: String, type: Int): AppInfo {
+    fun getAppInfo(context: Context, packageName: String, type: Int): AppInfo? {
         val pm = context.packageManager
-        val packageInfo = pm.getPackageInfo(packageName, type)
-        return AppInfo(
-            packageInfo.applicationInfo.loadLabel(pm).toString(),
-            packageInfo.packageName,
-            packageInfo.applicationInfo.loadIcon(pm),
-            packageInfo.versionName,
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) packageInfo.longVersionCode else packageInfo.versionCode.toLong(),
-            packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0,
-            pm.getLaunchIntentForPackage(packageInfo.packageName) != null
-        )
+        return try {
+            val packageInfo = pm.getPackageInfo(packageName, type)
+            AppInfo(
+                packageInfo.applicationInfo.loadLabel(pm).toString(),
+                packageInfo.packageName,
+                packageInfo.applicationInfo.loadIcon(pm),
+                packageInfo.versionName,
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) packageInfo.longVersionCode else packageInfo.versionCode.toLong(),
+                packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0,
+                pm.getLaunchIntentForPackage(packageInfo.packageName) != null
+            )
+        } catch (e: Exception) {
+            null
+        }
     }
 }
 
